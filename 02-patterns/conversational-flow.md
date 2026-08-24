@@ -19,6 +19,10 @@ flow, since `progress-indicator` and `agent-message` Statement turns already car
 section-transition context on their own. Original lettered section names are noted
 parenthetically for provenance only, where relevant.
 
+German section/field names and bilingual copy conventions used throughout this mapping are
+catalogued in `terminology.md`; copy-handling and register rules (including the legal-copy
+verbatim rule) are in `voice-and-tone.md`.
+
 ## Section-by-section mapping
 
 ### Introduction *(source flow: A. DEIN AUFTRAG)*
@@ -87,7 +91,8 @@ haven't been found yet.
 
 - Consent turns render as two Question turns (multi-select `option-card`, single item each,
   since each consent is independently optional) using the exact legal copy confirmed in the
-  schema — **copy is not to be paraphrased**, given its consent/legal nature.
+  schema — see `voice-and-tone.md`'s Legal & consent copy rule for how this copy must be
+  handled.
 - Scheduling ("When would you like to be contacted?") is a single-select `option-card` turn
   for Morning/Afternoon.
 - **Confirmed validation rule carries over exactly**: if the scheduling question is skipped or
@@ -106,8 +111,8 @@ haven't been found yet.
 - A dedicated turn using the `chat-composer` Capture trigger variant, opening the signature
   pad. Confirmed copy: title "Customer signature," body "I hereby confirm that the technical
   order has been fulfilled and that I have been informed about the service provided," buttons
-  "Zurück" (Back) / "Send report." The body copy renders as the preceding agent Statement
-  turn, not as an incidental caption.
+  "Zurück" (glossed in `terminology.md`) / "Send report." The body copy renders as the
+  preceding agent Statement turn, not as an incidental caption.
 - **Confirmed**: the customer must sign before the report can be sent — "Send report" is the
   final action on this screen, so signature capture is a hard requirement for report
   generation, not optional.
@@ -139,4 +144,4 @@ haven't been found yet.
 
 ## Related
 `gigacheck-flow-schema`, `agent-message`, `option-card`, `chat-composer`,
-`progress-indicator`
+`progress-indicator`, `terminology`, `voice-and-tone`

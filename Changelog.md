@@ -61,6 +61,15 @@ All notable additions and changes to this design system are logged here, most re
 ### Changed (2026-07-30, cont'd — surface the .definitionToggle open question in the pattern doc)
 - `conversational-flow.md` — added a note under OptimiseInternet flagging the `.definitionToggle` Conditional-vs-Expandable ambiguity and pointing to `definition-toggle.md`, so the open question is visible from the pattern doc, not just buried in the component file. Not resolved — still needs a decision.
 
+### Added (2026-07-30, cont'd — 03-content population)
+- `voice-and-tone.md` — Purpose, a "Registers by audience" breakdown of the six distinct registers already implicit in the confirmed schema copy plus the redesign's own new conversational-agent register, the relocated legal & consent "verbatim, not paraphrased" rule, Do/Don't, Related
+- `terminology.md` — Purpose, the DE/EN bilingual copy convention (stated as a principle, not a restatement of the OptimiseInternet pairs), a German section/screen name glossary table, and a VF KDG entry that explicitly declines to guess what "KDG" stands for since it was never confirmed
+
+### Changed (2026-07-30, cont'd — relocate embedded content guidance out of conversational-flow.md)
+- `conversational-flow.md` — Confirmation/Consent's inline "copy is not to be paraphrased" rule replaced with a cross-link to `voice-and-tone.md`'s Legal & consent copy section; Customer Signature's inline "Zurück (Back)" gloss replaced with a cross-link to `terminology.md` (only "Zurück" is glossed — "Send report" was already English and didn't need one); added a short pointer paragraph after the Overview directing readers to `terminology.md` and `voice-and-tone.md`; Related section now includes both. `microcopy-guidelines.md`, `error-handling.md`, and `loading-states.md` were left empty — nothing in scope for the first, and no cross-component sequencing logic found for the other two that wasn't already covered by an individual component's States table (agent-message's Validation follow-up/Streaming, chat-composer's Loading/Error, option-card's Error)
+
+**Second-source-of-truth note**: `terminology.md`'s glossary table deliberately does *not* duplicate the German/English pairings already inline in `gigacheck-flow-schema.md`'s own section headers — it's built as an index with a provenance note naming the schema as the single source of truth per entry, styled after `spacing.md`'s corner-radius provenance note, specifically to avoid recreating the Wohnbereich-style drift this repo has already hit once.
+
 <!--
 Entry format:
 
