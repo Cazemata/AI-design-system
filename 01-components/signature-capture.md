@@ -5,9 +5,11 @@ The signature pad widget used for the Customer signature turn — confirmed via 
 schema (`gigacheck-flow-schema.md`, node `1:3224` "Landscape DE"). This is a **hard gate
 before report submission**: per the confirmed source screen, the customer must sign before
 the report can be sent, so the paired `chat-composer` Submit ("Send report") control must
-not be enabled until this component reports a completed signature. This component is
-signature-only — there is no photo/camera capture step anywhere in the confirmed source
-flow, and this file does not cover one.
+not be enabled until this component reports either a completed signature or an explicitly
+recorded decline to sign (see Decline path below — **confirmed via 2026-10 stakeholder
+workshop, not a new Figma pass**). This component is signature-only — there is no
+photo/camera capture step anywhere in the confirmed source flow, and this file does not
+cover one.
 
 ## Anatomy
 1. **Canvas** — the drawing surface where the signature stroke is captured.
@@ -21,6 +23,11 @@ flow, and this file does not cover one.
    enabled. (The confirmed source screen combines the signature pad and "Send report" on one
    frame; this redesign splits them — Done here just commits the signature, and the actual
    send happens via the separate terminal `chat-composer` Submit control back in the thread.)
+7. **Decline affordance** — **confirmed via 2026-10 stakeholder workshop, not a new Figma
+   pass**: a visible option alongside the canvas for the customer to indicate they're
+   refusing to sign, rather than leaving the canvas blank. Opens a brief confirmation (e.g.
+   "Customer declines to sign — continue?") before committing, so it isn't triggered
+   accidentally.
 
 ## Variants
 - **Landscape (confirmed)** — the only orientation confirmed in the source flow: node
@@ -34,6 +41,7 @@ flow, and this file does not cover one.
 | Empty (default) | Canvas shows only the baseline guide, no stroke | Awaiting the first touch/stroke; Done is disabled in this state |
 | Mid-signature | Stroke renders live as the finger/stylus moves | Actively being drawn |
 | Completed | Full stroke visible, Clear and Done both available | A signature is present; this is the state that unlocks the external `chat-composer` Submit control |
+| Declined | Canvas clears/dims, a "Customer declined to sign" confirmation replaces it | **Confirmed via 2026-10 stakeholder workshop, not a new Figma pass.** Reached via the Decline affordance, not by leaving Empty untouched; unlocks the external `chat-composer` Submit control as an alternative to Completed — not a failure state |
 
 ## Sizing & spacing
 - Reference frame: 809×360 (landscape), per the confirmed source node — treat as a reference
@@ -65,13 +73,17 @@ it meaningfully diverges.
   [`spacing.md`](../00-foundations/spacing.md)).
 - Screen reader behavior: announce the transition into the Completed state (e.g. "Signature
   captured") so non-visual users know Done is now meaningful to activate.
+- The Decline affordance needs its own clear accessible label ("Customer declined to sign"),
+  distinct from Clear/Back/Done, and its confirmation step must be screen-reader accessible.
 
 ## Do / Don't
 - **Do** keep the external `chat-composer` Submit control disabled until this component
-  reports Completed — this is a functional gate, not just a visual one.
+  reports Completed *or* Declined — this is a functional gate, not just a visual one.
 - **Do** force landscape orientation for this turn specifically, matching the confirmed
   source screen.
 - **Don't** let Done be tappable while the canvas is Empty.
+- **Don't** let the Decline affordance commit on a single accidental tap — confirm first,
+  since it's a significant customer-facing outcome.
 - **Don't** add a camera/photo capture affordance here — that was never part of the confirmed
   source flow.
 

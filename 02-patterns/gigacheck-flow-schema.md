@@ -6,6 +6,11 @@ Extracted from Figma file "AI Design System Test" (fileKey: `63HryYbfkIyzath7V25
 
 This is a linear multi-step checklist wizard with an editable summary and a confirmation/consent step before submission.
 
+**Workshop update note (2026-10):** some entries below are marked as confirmed via a
+stakeholder workshop (hand-written German sticky notes), not a new Figma extraction pass.
+Flagged inline at each occurrence — these are confirmed *decisions*, not confirmed
+*pixel-level screens*, which is a different kind of confirmation than the rest of this file.
+
 ---
 
 ## A. DEIN AUFTRAG (Your Order) — intro
@@ -82,14 +87,20 @@ same screen, not separate content)
 - Includes the same validation state pattern: *"Mandatory field hasn't been filled!"*
 
 ## Confirmation / Consent (unlabeled section, between D and F)
-**`GigaCheck/Confirmation`** — `1:2424`, `1:2466`, `1:2508`, `1:2697`, `1:2634`, `1:2571` (6 variants)
-- Consent checkboxes (legally-worded, customer-facing):
+**`GigaCheck/Confirmation`** — `1:2424`, `1:2466`, `1:2508`, `1:2697`, `1:2634`, `1:2571` (6 variants, as found in the original Figma extraction — see workshop note below)
+- Consent checkboxes (legally-worded, customer-facing) — **BEW (Beratungseinwilligung / consultation consent)**:
   - *"Yes, I agree that Vodafone West GmbH may contact me for tariff advice by telephone..."*
   - *"Yes, I agree that Vodafone West GmbH may send me an e-mail... asking me to give my consent to advertising..."*
-- Some variants add a scheduling question:
-  - **"Morning (08:00 - 12:00)"** / **"Afternoon (12:00 - 17:00)"**
-  - With a validation state: *"Select at least one field!"*
-- The 6 variants appear to be combinations of: consent-only vs. consent+scheduling, and empty vs. error vs. filled states — worth confirming directly in Figma which is the "true" default state vs. edge-case states.
+- **Workshop update (2026-10, not a new Figma pass):** the scheduling question some of the 6
+  variants added — "Morning (08:00 - 12:00)" / "Afternoon (12:00 - 17:00)," with validation
+  state "Select at least one field!" (node `1:2508` for the scheduling variant, `1:2697` for
+  its validation-error variant) — has been **removed** per stakeholder decision ("Vormittags
+  / Nachmittags raus"). No longer part of the confirmed requirement; the node IDs are kept
+  here only as a historical record of what the original Figma screens showed.
+- With scheduling removed, the only remaining requirement is the two BEW consent checkboxes
+  above. The 6 original variants were combinations of consent-only vs. consent+scheduling,
+  and empty/error/filled states — only the consent-only, non-scheduling variants are still
+  relevant.
 
 ## F. FEEDBACK (submission result)
 **`GigaCheck/Send/Success`** — `1:1460`
@@ -125,9 +136,8 @@ same screen, not separate content)
  → 1:1524 (Summary)
  → 1:2466 or 1:2424 (Confirmation — the specific variant reached depends on which
     consent checkboxes are already ticked when leaving Summary)
- → 1:2508 (Confirmation w/ scheduling — "When would you like to be contacted?")
- → 1:2697 (validation-error variant — reached if Morning/Afternoon isn't actually
-    registered as checked; shows "Select at least one field!")
+ → *(originally: 1:2508 scheduling screen → 1:2697 validation-error variant — both removed
+    per 2026-10 workshop decision; see Confirmation / Consent section above)*
  → **1:3224 "Landscape DE"** — Customer signature, confirmed via `get_design_context`.
     Landscape-oriented frame (809×360 — device rotated for signing). Copy: "Customer
     signature" / "I hereby confirm that the technical order has been fulfilled and that I
@@ -139,12 +149,16 @@ same screen, not separate content)
 ```
 
 **Note:** whether "Send report" is disabled outright until a signature is present, or is
-tappable but fails validation like the scheduling field did, hasn't been confirmed — worth
-checking directly in Figma or with the file owner.
+tappable but fails validation, hasn't been confirmed — worth checking directly in Figma or
+with the file owner.
 
 **Key corrections to the inferred version above:**
 - The **"Booked Products" radio (TV Only / Internet Only / Internet+TV) does not branch the flow** in this prototype — all three Wohnbereich frames play in sequence regardless of selection. If real branching is intended for production, it isn't wired into this prototype and would need to be specified separately.
-- **Confirmation requires both consent checkboxes checked AND a contact-time preference (Morning or Afternoon) selected** to proceed — missing the time preference specifically routes to a dedicated validation-error screen (`1:2697`) rather than just blocking the button silently.
+- **Confirmation originally required both consent checkboxes checked AND a contact-time
+  preference (Morning or Afternoon) selected** to proceed, missing the time preference
+  routing to a dedicated validation-error screen (`1:2697`) — true of the Figma prototype as
+  walked, but the scheduling requirement has since been **removed per the 2026-10 workshop**
+  (see Confirmation / Consent above); only the two consent checkboxes remain required.
 - The 6 "Confirmation" variants we originally treated as ambiguous states are now understood: some are default/empty, one is the live validation-error state, and which one appears depends on what's already filled in from the previous screen — not a fixed default.
 - We did not confirm the `1:1493` (Send/Error) trigger condition — only the success path was walked live.
 
@@ -153,3 +167,11 @@ checking directly in Figma or with the file owner.
 2. **Send/Error (`1:1493`) trigger** — not walked; likely a network/API-failure state rather than a user-input branch, worth confirming with the file owner.
 3. **VF KDG branded section** — still unconfirmed whether in scope for the conversational redesign, or purely a visual re-skin of the same flow.
 4. **Signature gate mechanism** — whether "Send report" on `1:3224` is disabled outright pre-signature or fails validation on tap hasn't been confirmed in Figma.
+5. **Possible A. DEIN AUFTRAG match — unverified hypothesis (2026-10 workshop sketch, not a
+   confirmed Figma screen):** a hand-drawn workshop sketch shows a question resembling
+   "Kannst Du das Anliegen lösen?" (Can you resolve the issue?) with Yes → continue to the
+   check, No → reasons (technical work needed / no access / foreign NE4 system / custom
+   input) → an "Always On" offer and a message about follow-up steps. This *might* be the
+   still-unidentified A. DEIN AUFTRAG intro section (see item 1 above) — but it's inferred
+   from a rough sketch, not confirmed Figma screens. Treat as a hypothesis to verify, not a
+   confirmed addition to the flow.

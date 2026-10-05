@@ -70,6 +70,23 @@ All notable additions and changes to this design system are logged here, most re
 
 **Second-source-of-truth note**: `terminology.md`'s glossary table deliberately does *not* duplicate the German/English pairings already inline in `gigacheck-flow-schema.md`'s own section headers — it's built as an index with a provenance note naming the schema as the single source of truth per entry, styled after `spacing.md`'s corner-radius provenance note, specifically to avoid recreating the Wohnbereich-style drift this repo has already hit once.
 
+### Changed (2026-07-30, cont'd — dual delivery on report send)
+- `conversational-flow.md` — Feedback section: added a "Dual delivery on send" bullet between Send/Success and Send/Error documenting that "Send report" triggers both the MeinVodafone-Portal outcome and a PDF-by-email to the customer, confirmed directly with the product owner — **not sourced from `gigacheck-flow-schema.md`**, which only documents the portal outcome; the schema's own header states it's a Figma extraction, and this requirement isn't from Figma, so `gigacheck-flow-schema.md` was intentionally left unedited. Also added an open question under Send/Error about whether it needs to distinguish which delivery channel failed, not resolved.
+
+## 2026-10-05
+
+**Source note:** this entire pass is sourced from a stakeholder workshop (hand-written German sticky-note photos), not a new Figma extraction. `gigacheck-flow-schema.md` and `conversational-flow.md` mark every workshop-derived item inline as a confirmed *decision*, distinct from the file's otherwise confirmed *pixel-level screens*.
+
+### Changed
+- `gigacheck-flow-schema.md` — added a top-level workshop-provenance note; removed the Morning/Afternoon scheduling question (nodes `1:2508`/`1:2697`) from the Confirmation/Consent section and the confirmed click-path, per the workshop instruction "Vormittags / Nachmittags raus" — kept as a historical record of what Figma originally showed, marked removed rather than deleted outright; labeled the existing consent checkboxes as **BEW (Beratungseinwilligung)** for the first time; added item 5 to Remaining open items — an unverified hypothesis (from a rough workshop sketch, not a confirmed screen) that a "Kannst Du das Anliegen lösen?" triage question might be the still-unidentified A. DEIN AUFTRAG intro section
+- `gigacheck-flow-schema.md` — fixed two dangling references to the now-removed scheduling field ("mirroring the scheduling field's behavior" / "like the scheduling field did") in the signature-gate note and Key corrections, caught while verifying the schema and `conversational-flow.md` still agree with each other
+- `conversational-flow.md` — removed the scheduling question and its Validation follow-up from Confirmation/Consent, same workshop source; added a "Proposed — not yet settled" note (both there and under Customer Signature) about possibly consolidating BEW onto the Customer Signature screen, hedged per the workshop's own "evtl." wording; added a Decline path to Customer Signature ("Kunde verweigert Unterschrift") and updated the hard-gate language so "Send report" unlocks on signature *or* recorded decline, not signature alone; trimmed Optimization Options to informational-only framing per the workshop's sales-vs-information scope line, flagging that the exact copy still needs review; flagged two open UX questions on the Internet Status screen (bandwidth prominence, whether "Maximum technical available bandwidth" is needed) and a potential conflict between a workshop note ("TV Nutzung - nur wenn kein TV gebucht") and the existing Wohnbereich branching, without guessing a resolution
+- `conversational-flow.md` — fixed the same dangling scheduling-field comparison in Customer Signature's "Unconfirmed" bullet, found during the same consistency check
+
+### Added
+- `signature-capture.md` — added a Decline affordance (Anatomy) and a Declined state (States table), both marked as workshop-confirmed, not Figma-confirmed; updated Overview, Accessibility, and Do/Don't so Completed and Declined are equally valid ways to satisfy the signature gate
+- `chat-composer.md` — updated the Submit (terminal) variant, Anatomy's Send/submit control, and the Related components note so the terminal gate reflects "signature or decline," matching `signature-capture.md`
+
 <!--
 Entry format:
 

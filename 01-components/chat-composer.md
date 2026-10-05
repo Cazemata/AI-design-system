@@ -21,7 +21,8 @@ it is not always a text field.
    turn that expects a signature (the Customer signature step), opening `signature-capture`
    rather than typing.
 5. **Send/submit control** — final-turn variant, replacing the "Send report" button; only
-   ever appears on the terminal turn, after signature capture is complete.
+   ever appears on the terminal turn, after signature capture is complete or a decline has
+   been recorded.
 
 ## Variants
 - **Text/numeric entry** — single-line by default; validates inline (mirrors the original
@@ -34,11 +35,12 @@ it is not always a text field.
 - **Capture trigger** — opens `signature-capture` as a modal/full-screen surface and returns
   the result inline as a confirmation card in the conversation thread, rather than navigating
   to a separate screen and back.
-- **Submit (terminal)** — the "Send report" equivalent; only enabled once signature capture
-  (or whatever the terminal gate is) has been completed. This directly encodes the flow rule
-  we confirmed on the Customer Signature screen: the report cannot be generated without a
-  signature captured first, so this control should be disabled — not just validated on tap —
-  until that condition is met.
+- **Submit (terminal)** — the "Send report" equivalent; only enabled once `signature-capture`
+  reports a completed signature **or an explicitly recorded decline to sign** (confirmed via
+  2026-10 stakeholder workshop, not a new Figma pass — see `signature-capture.md`'s Declined
+  state). This directly encodes the flow rule confirmed on the Customer Signature screen: the
+  report cannot be generated without one of those two outcomes recorded first, so this
+  control should be disabled — not just validated on tap — until that condition is met.
 
 ## States
 | State | Visual change | Description |
@@ -78,4 +80,5 @@ meaningfully diverges.
 
 ## Related components
 `agent-message`, `option-card`, `progress-indicator`, `signature-capture` (opened by the
-Capture trigger variant; its Completed state gates this component's terminal Submit control)
+Capture trigger variant; its Completed or Declined state gates this component's terminal
+Submit control)

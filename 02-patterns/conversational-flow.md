@@ -23,6 +23,10 @@ German section/field names and bilingual copy conventions used throughout this m
 catalogued in `terminology.md`; copy-handling and register rules (including the legal-copy
 verbatim rule) are in `voice-and-tone.md`.
 
+Some items below are marked as confirmed via a 2026-10 stakeholder workshop (hand-written
+German sticky notes), not a new Figma pass — these reflect confirmed product *decisions*,
+not confirmed pixel-level screens, and are flagged inline where they occur.
+
 ## Section-by-section mapping
 
 ### Introduction *(source flow: A. DEIN AUFTRAG)*
@@ -43,6 +47,11 @@ haven't been found yet.
   `option-card` turn for "Internet Status — mandatory" ("Internet is working" / "Internet is
   used"), followed by two `chat-composer` numeric turns: "Booked Bandwidth (Mbit/s) —
   mandatory" and "Maximum technical available bandwidth (Mbit/s) — mandatory."
+  - **Open UX questions — raised in 2026-10 stakeholder workshop, not resolved**: (1) a
+    workshop note suggests showing the booked bandwidth more prominently on this screen
+    ("Show the booked bandwidth") — no specific treatment proposed, just flagged; (2) the
+    same workshop questioned whether "Maximum technical available bandwidth" is a field
+    anyone actually needs. Neither resolved — fields unchanged here pending that review.
 - **Living Area / Wohnbereich** (`1:2844`→`1:2773`→`1:2920`): single-select `option-card` turn
   for "Booked Products - Mandatory" (TV Only / Internet Only / Internet and TV), followed by
   the "Router - Mandatory" / "Multimedia-Dose - Mandatory" Question turns, each paired with a
@@ -61,17 +70,39 @@ haven't been found yet.
   provider" Question turn(s), sequential per the confirmed path.
 
 ### Optimization Options *(source flow: C. OPTIMIZATION OPTIONS)*
+> **Scope reduction — confirmed via 2026-10 stakeholder workshop, not a new Figma pass:** the
+> workshop's in-scope/out-of-scope board marks "Sales-ansprache / Produktupgrade" (sales
+> pitch / product upgrade) **out of scope**, and "rudimentäre Produktinformationen"
+> (rudimentary product information) **in scope**. The turns below are trimmed accordingly
+> from the previously designed upsell-offer-card version. **The exact line between
+> "informational" and "sales" wasn't spelled out in the workshop notes** — this flags the
+> scope reduction, it doesn't resolve the copy.
+
 - TV/Internet usage check (`1:1964`, `1:1912`): Question turns with multi-select
   `option-card`, including the validation-follow-up path for the "Mandatory field hasn't
-  been filled!" case.
+  been filled!" case. Unaffected by the scope reduction above — a usage-status check, not
+  an upsell offer.
+  - **Open question — raised in 2026-10 stakeholder workshop, not resolved**: a workshop
+    sketch notes "TV Nutzung - nur wenn kein TV gebucht" (TV usage — only if no TV booked),
+    alongside a crossed-out "TV sticker pop-up" screen not otherwise identified. This does
+    **not** appear to match the Wohnbereich branching already built above — that branching
+    shows TV-related turns when TV *is* booked, the opposite condition. Flagging as a
+    potential gap/conflict rather than guessing a new branching rule.
 - **OptimiseInternet** (`1:1854`) and **OptimiseTV** (`1:1789`): rendered as a sequence of
   Upsell offer card turns (one agent Statement introducing the offers, then the cards
   themselves), preserving each helper/definition line from the original screens.
+  **Per the scope reduction above, these should no longer read as upsell offers** — rendered
+  instead as informational `agent-message` Statement turns covering only rudimentary/factual
+  product information, specific trimmed copy still to be determined. Don't assume the
+  original helper lines (e.g. "Internet connection can be increased to 1,000 Mbit/s," the
+  GigaTV product list) carry over as-is.
   - **Open question — `.definitionToggle` behavior**: OptimiseInternet's "has received" /
     "has NOT received a FREE WiFi router" copy uses the original `.definitionToggle`
     component. The schema only confirms this as an account-driven conditional copy swap, not
     something the technician taps — see `definition-toggle.md`'s Conditional vs. Expandable
     variants for the full detail. Needs a decision before implementation; not resolved here.
+    Also now subject to the same informational-vs-sales review above — "FREE WiFi router"
+    reads as upsell framing.
 
 ### Summary *(source flow: D. SUMMARY)*
 - **Summary** (`1:1524`): a single Summary recap `agent-message`, listing every answer
@@ -92,13 +123,17 @@ haven't been found yet.
 - Consent turns render as two Question turns (multi-select `option-card`, single item each,
   since each consent is independently optional) using the exact legal copy confirmed in the
   schema — see `voice-and-tone.md`'s Legal & consent copy rule for how this copy must be
-  handled.
-- Scheduling ("When would you like to be contacted?") is a single-select `option-card` turn
-  for Morning/Afternoon.
-- **Confirmed validation rule carries over exactly**: if the scheduling question is skipped or
-  not registered, the flow surfaces the Validation follow-up `agent-message` variant (standing
-  in for the `1:2697` error state) rather than silently blocking — matching the real behavior
-  we confirmed by walking the prototype.
+  handled. These are the **BEW (Beratungseinwilligung / consultation consent)** checkboxes.
+- **Scheduling question removed** — **confirmed via 2026-10 stakeholder workshop, not a new
+  Figma pass** ("Vormittags / Nachmittags raus"). The "When would you like to be contacted?"
+  Morning/Afternoon question, its two options, and its Validation follow-up (previously
+  standing in for the `1:2697` error state) are no longer part of this flow. The only
+  remaining requirement is the two BEW consent checkboxes above.
+- **Proposed — not yet settled**: the workshop note also suggested possibly consolidating
+  BEW onto the same screen as Customer Signature ("evtl. mit Unterschrift auf eine Seite").
+  Hedged with "evtl." in the original note, so flagged for confirmation, not decided — if
+  adopted, the two BEW turns would move to render immediately before/alongside the Customer
+  Signature turn rather than as their own section. Not implemented here.
 
 ### Customer Signature
 > **Note — section-lettering gap:** this section falls in the same unlabeled gap between
@@ -113,13 +148,19 @@ haven't been found yet.
   order has been fulfilled and that I have been informed about the service provided," buttons
   "Zurück" (glossed in `terminology.md`) / "Send report." The body copy renders as the
   preceding agent Statement turn, not as an incidental caption.
-- **Confirmed**: the customer must sign before the report can be sent — "Send report" is the
-  final action on this screen, so signature capture is a hard requirement for report
-  generation, not optional.
+- **Decline path — confirmed via 2026-10 stakeholder workshop, not a new Figma pass**
+  ("Kundenunterschrift evtl. mit 'Kunde verweigert Unterschrift' Feld"): the customer must
+  also be able to indicate refusal to sign, not just sign or leave the canvas blank. See
+  `signature-capture.md`'s new Declined state for the component-level detail.
+- **Proposed — not yet settled** (see Confirmation / Consent above): the workshop note
+  suggested possibly consolidating the BEW consent checkboxes onto this same screen.
+- **Confirmed**: the customer must either sign or have a decline explicitly recorded before
+  the report can be sent — "Send report" is the final action on this screen, so one of those
+  two outcomes is a hard requirement for report generation, not optional.
 - **Unconfirmed**: the exact UI mechanism enforcing that requirement — whether the terminal
   Submit control (`chat-composer` Submit variant, "Send report") is disabled outright until a
-  signature is present, or instead remains tappable and fails validation on tap (mirroring the
-  scheduling field's behavior). This needs confirmation before implementation.
+  signature or decline is present, or instead remains tappable and fails validation on tap.
+  This needs confirmation before implementation.
 
 ### Feedback *(source flow: F. FEEDBACK)*
 - **Send/Success** (`1:1460`): rendered as an inline system confirmation message in the
@@ -127,19 +168,30 @@ haven't been found yet.
   customer" action) rather than a full-screen takeover — keeps the technician in the same
   conversational context rather than ejecting them to a separate screen. **Confirmed as
   final** — this inline treatment replaces the original's full-screen success paradigm.
+- **Dual delivery on send** — **confirmed directly with the product owner, not sourced from
+  `gigacheck-flow-schema.md`** (the schema only documents the MeinVodafone-Portal outcome;
+  this requirement falls outside its Figma extraction, so it isn't recorded there — see that
+  file's own header): "Send report" triggers two things together on every successful send,
+  not as alternatives — (1) the report becomes available on the MeinVodafone-Portal (the
+  schema's original confirmed behavior), and (2) a PDF of the report is generated and emailed
+  directly to the customer. The inline Send/Success message should reflect both outcomes,
+  since the schema's original copy only mentions the portal.
 - **Send/Error** (`1:1493`): **deferred** — being addressed in a separate pass, not specified
   in this mapping. Its trigger condition wasn't confirmed during the walkthrough; a tentative
   mapping to `chat-composer`'s Submit Error state (inline "Sending the report failed — want
   to try again?") is noted for reference only and should not be treated as confirmed until
   that separate pass resolves it.
+  - **Open question**: whether Send/Error needs to distinguish which delivery channel failed
+    (portal vs. PDF/email) now that send has two outcomes, or a single generic failure state
+    is sufficient — not resolved, flagging only.
 
 ## Open items carried from the flow schema
 - Introduction section's real screens (previously referenced as A. DEIN AUFTRAG) are still
   unidentified.
 - Send/Error trigger condition — deferred to a separate pass (see Feedback above).
 - Customer Signature's disable-vs-validate-on-tap *mechanism* for "Send report" — unconfirmed
-  (the requirement to sign before sending is itself confirmed; only the enforcement mechanism
-  is open — see Customer Signature above).
+  (the requirement to sign *or have a decline recorded* before sending is itself confirmed;
+  only the enforcement mechanism is open — see Customer Signature above).
 - VF KDG branded-section scope — unresolved, per `gigacheck-flow-schema.md`.
 
 ## Related
