@@ -1,5 +1,14 @@
 # Definition Toggle
 
+> **Flag — no current use in the flow (confirmed 2026-10).** This component's only confirmed
+> source was the OptimiseInternet screen, which has been **removed from the GigaCheck flow**
+> (see `gigacheck-flow-schema.md` and `conversational-flow.md`'s "Removed from the flow"
+> section). Nothing in the confirmed current flow uses a Definition Toggle. The component is
+> retained, not deleted — and the Conditional-vs-Expandable ambiguity below is now moot for
+> this flow, though it would resurface if the component is ever adopted elsewhere. Flagging
+> rather than resolving: whether to keep, park, or retire this component is a decision for
+> whoever owns the component set.
+
 ## Overview
 A small inline component for supplementary copy, based on the `.definitionToggle` pattern
 found in the original OptimiseInternet screens. **Note on source ambiguity**: the confirmed
@@ -11,7 +20,9 @@ Upsell offer card variant, written before that schema detail was confirmed, inst
 silently pick one, this component documents both as separate variants — **only the
 Conditional variant is actually confirmed in the source flow**; the Expandable variant
 matches `option-card.md`'s existing description but hasn't itself been verified against a
-real screen. Confirm which is intended for OptimiseInternet before implementation.
+real screen. **No source in the current flow:** OptimiseInternet is removed (see the flag
+above), so there is no longer an OptimiseInternet implementation to confirm this against —
+the question would only need settling if the component is adopted somewhere new.
 
 ## Anatomy
 1. **Label/copy** — the currently visible text.

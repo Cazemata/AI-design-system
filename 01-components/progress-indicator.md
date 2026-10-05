@@ -11,10 +11,12 @@ turns, and vice versa.
 1. **Track** — thin horizontal bar, same visual weight as the original.
 2. **Fill** — proportional to section progress, not raw turn count (raw turn count would
    jitter unpredictably as validation follow-ups add turns).
-3. **Section label** (optional, on tap/expand) — surfaces the lettered section names from the
-   original flow (A. DEIN AUFTRAG, B. DEIN ZUHAUSE, C. OPTIMIZATION OPTIONS, D. SUMMARY,
-   Confirmation, Send) as a lightweight overlay, so a technician who's used to the old
-   section structure isn't disoriented.
+3. **Section label** (optional, on tap/expand) — surfaces the flow's section names as a
+   lightweight overlay, using the same plain descriptive headers as `conversational-flow.md`,
+   in confirmed flow order: Introduction, Coverage Area, Living Area, Your products, Summary,
+   Consent (BEW), Customer Signature, Feedback. Lettered names were dropped as a confirmed
+   decision, so they aren't surfaced here either. (Optimization Options was removed from the
+   flow in 2026-10 and is no longer a section.)
 
 ## Variants
 - **Inline (default)** — thin bar pinned below the top nav, always visible, matching original
@@ -41,7 +43,7 @@ meaningfully diverges.
 - **iOS (if different)**: No deviation currently scoped.
 
 ## Accessibility
-- Announce section changes ("Now on: Optimization Options") using the platform's native
+- Announce section changes ("Now on: Your products") using the platform's native
   live-region announcement (TalkBack's `AccessibilityLiveRegion` on Android, VoiceOver's
   announcement API on iOS), not a web ARIA attribute, when the fill updates at a section
   boundary — don't announce on every conversational turn, which would be noisy.
@@ -49,8 +51,9 @@ meaningfully diverges.
   to jump backward in a flow that otherwise has no persistent multi-step form to scan visually.
 
 ## Do / Don't
-- **Do** tie progress to section boundaries (matching the original A–F structure), not to
-  conversational turn count, which will vary based on validation retries.
+- **Do** tie progress to section boundaries (the descriptive sections listed in Anatomy,
+  matching `conversational-flow.md`), not to conversational turn count, which will vary based
+  on validation retries.
 - **Don't** let the Updating animation fire on every single agent/response exchange — reserve
   it for genuine section transitions, or it undermines the calmer, conversational tone this
   redesign is going for.

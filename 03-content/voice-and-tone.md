@@ -11,16 +11,20 @@ registers, carried forward as-is by the conversational redesign (`conversational
 unless noted:
 
 - **Technician — procedural/checklist**: terse, functional, no persuasion needed (e.g.
-  "Internet Status — mandatory," "Booked Bandwidth (Mbit/s)"). The technician is a
-  professional completing a task, not a customer being sold to.
+  "Test point," "Router - Mandatory"). The technician is a professional completing a task,
+  not a customer being sold to.
 - **Customer — legal & consent**: formal, first-person declarative, verbatim (e.g. "I hereby
   confirm that the technical order has been fulfilled..."). See Legal & consent copy below —
   this register is never paraphrased.
 - **Customer — confirmation/success**: informative, directed at the technician about what to
   tell the customer (e.g. "The report was successfully sent. Please inform the customer...").
-- **Sales/upsell**: benefit-led, plain (e.g. "Internet connection can be increased to 1,000
-  Mbit/s"), distinct from both the checklist and legal registers — persuasive but not
-  hype-driven.
+- **Sales/upsell** — **not applied in the current flow (confirmed 2026-10).** Benefit-led,
+  plain (e.g. "Internet connection can be increased to 1,000 Mbit/s"), distinct from both the
+  checklist and legal registers — persuasive but not hype-driven. All sales/upsell content was
+  removed from the flow on purpose, so the technician doesn't upset the client with
+  sales-related topics — a confirmed product decision, not a pending exclusion. The register
+  is documented here for reference; it should not be introduced into technician-facing copy.
+  The example above comes from the removed OptimiseInternet screen.
 - **Validation/error**: direct and imperative in the source flow (e.g. "Mandatory field
   hasn't been filled!"). The conversational redesign softens this into plain-language
   restatement via `agent-message`'s Validation follow-up variant rather than a generic error

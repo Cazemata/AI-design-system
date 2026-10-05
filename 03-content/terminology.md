@@ -6,12 +6,15 @@ confirmed German source name, an established English equivalent, or a fixed bili
 pairing, it's indexed here so copy stays consistent across components and patterns.
 
 ## Bilingual (DE/EN) copy convention
-Some confirmed screens carry both German and English copy variants (OptimiseInternet's
-upsell offers, per `gigacheck-flow-schema.md`). This file doesn't restate those pairs —
-they're a live part of the schema, and duplicating them here would create two places that
-could drift out of sync. The convention: when a screen needs bilingual copy, follow the
-paired DE/EN format already confirmed in the schema rather than inventing a new bilingual
-pattern, and treat the schema as the single source for the current pairs.
+**The worked example below is historical.** The only screen confirmed to carry paired German
+and English copy variants was OptimiseInternet's upsell offers, and that screen has been
+**removed from the flow (confirmed 2026-10)** — so it describes a removed screen, not current
+content. No equivalent example exists in the confirmed flow, and none is invented here.
+
+The convention itself still stands for any future bilingual copy: follow the paired DE/EN
+format recorded in `gigacheck-flow-schema.md` rather than inventing a new bilingual pattern,
+and treat the schema as the single source for those pairs. This file doesn't restate them —
+duplicating them here would create two places that could drift out of sync.
 
 ## German section/screen name glossary
 The confirmed flow uses German section and screen names throughout, most already glossed
@@ -26,11 +29,11 @@ field names — see `Changelog.md`), and this table exists to be looked up, not 
 
 | German term | English equivalent | Where confirmed |
 |---|---|---|
-| DEIN AUFTRAG | Your Order | `gigacheck-flow-schema.md`, section A (real screens still unidentified) |
+| DEIN AUFTRAG | Your Order | `gigacheck-flow-schema.md`, section A — first screen now confirmed ("Could you resolve the issue?") |
 | DEIN ZUHAUSE | Your Home | `gigacheck-flow-schema.md`, section B |
 | Versorgungsbereich | Service Area | `gigacheck-flow-schema.md`, node `1:2052` |
 | Wohnbereich | Living Area | `gigacheck-flow-schema.md`, nodes `1:2844`/`1:2773`/`1:2920` |
-| Telefon | Phone | `gigacheck-flow-schema.md`, nodes `1:3067`–`1:3172` |
+| Telefon | Phone | `gigacheck-flow-schema.md`, nodes `1:3067`–`1:3172` — **screen removed from the flow (confirmed 2026-10)**; term retained for the historical entry |
 | Zurück | Back | Confirmed button label, node `1:3224` (Customer Signature) |
 
 Also referenced but not a translation pair: **VF KDG** — a client/brand variant named

@@ -21,8 +21,8 @@ it is not always a text field.
    turn that expects a signature (the Customer signature step), opening `signature-capture`
    rather than typing.
 5. **Send/submit control** — final-turn variant, replacing the "Send report" button; only
-   ever appears on the terminal turn, after signature capture is complete or a decline has
-   been recorded.
+   ever appears on the terminal turn, after signature capture is complete or the signature
+   waiver has been checked.
 
 ## Variants
 - **Text/numeric entry** — single-line by default; validates inline (mirrors the original
@@ -36,8 +36,8 @@ it is not always a text field.
   the result inline as a confirmation card in the conversation thread, rather than navigating
   to a separate screen and back.
 - **Submit (terminal)** — the "Send report" equivalent; only enabled once `signature-capture`
-  reports a completed signature **or an explicitly recorded decline to sign** (confirmed via
-  2026-10 stakeholder workshop, not a new Figma pass — see `signature-capture.md`'s Declined
+  reports a completed signature **or a checked signature waiver** ("Customer waives
+  signature" — confirmed via 2026-10 screenshot pass; see `signature-capture.md`'s Waived
   state). This directly encodes the flow rule confirmed on the Customer Signature screen: the
   report cannot be generated without one of those two outcomes recorded first, so this
   control should be disabled — not just validated on tap — until that condition is met.
@@ -80,5 +80,5 @@ meaningfully diverges.
 
 ## Related components
 `agent-message`, `option-card`, `progress-indicator`, `signature-capture` (opened by the
-Capture trigger variant; its Completed or Declined state gates this component's terminal
+Capture trigger variant; its Completed or Waived state gates this component's terminal
 Submit control)

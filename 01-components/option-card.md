@@ -12,10 +12,12 @@ where free text isn't the expected input.
 1. **Card container** — rounded rectangle, full available width (vertical stack) or
    fixed/flexible width (horizontal chip row for short 2–3 option sets like Morning/Afternoon).
 2. **Leading icon** (optional) — used when the original screen paired a checkbox with an
-   icon-bearing helper (e.g. the OptimiseInternet upsell items).
+   icon-bearing helper (e.g. the OptimiseInternet upsell items — **no source in the current
+   flow**, that screen is removed).
 3. **Label** — the option text itself (e.g. "Internet is working").
 4. **Helper text** (optional) — smaller text beneath the label, for upsell/offer copy that
-   had its own explanatory line in the original screens.
+   had its own explanatory line in the original screens — **no source in the current flow**,
+   since the upsell/offer screens are removed.
 5. **Selection indicator** — delegated to `checkbox-radio`: checkmark (multi-select) or
    filled dot (single-select), trailing or leading depending on platform convention, rather
    than introducing new iconography here.
@@ -31,13 +33,19 @@ where free text isn't the expected input.
 - **Upsell offer card** — a richer variant combining leading icon, label, and helper/definition
   text, used for OptimiseInternet/OptimiseTV screens. Optionally expandable inline (replacing
   the `.definitionToggle` component) rather than needing a separate detail screen.
+  - **Flag — no source in the current flow (confirmed 2026-10).** The OptimiseInternet and
+    OptimiseTV screens this variant was built for have been **removed from the GigaCheck
+    flow**, and no upsell content remains in it (see `conversational-flow.md`'s "Removed from
+    the flow"). The variant is **retained, not deleted** — flagging that it currently has no
+    confirmed consumer, which is a decision for the component-set owner, not something
+    resolved here.
 
 ## States
 | State | Visual change | Description |
 |---|---|---|
 | Default | Unselected container, no fill | Awaiting input |
 | Selected | Selection indicator filled; single-select shows only the chosen card as filled, others dim slightly | Reduces visual noise around the chosen option |
-| Disabled | `color-action-disabled` fill/border, `color-text-disabled` label | Used when an option is contextually unavailable (e.g. an upsell already active on the account) — shown, not hidden, with a short reason |
+| Disabled | `color-action-disabled` fill/border, `color-text-disabled` label | Used when an option is contextually unavailable (the "upsell already active on the account" example has **no source in the current flow**) — shown, not hidden, with a short reason |
 | Error | No border change on the cards themselves — instead of a `color-border-critical` border on the cards, the error surfaces via an inline agent Validation follow-up message | Multi-select group shows this state collectively when confirmed with zero selections on a mandatory question — replaces the red-bordered box + "Select at least one field!" pattern |
 
 ## Sizing & spacing
@@ -73,4 +81,5 @@ meaningfully diverges.
 
 ## Related components
 `agent-message`, `chat-composer`, `checkbox-radio` (this component's selection indicator is
-delegated to it), `definition-toggle` (rendered inline by the Upsell offer card variant)
+delegated to it), `definition-toggle` (rendered inline by the Upsell offer card variant —
+**no source in the current flow**; link retained)

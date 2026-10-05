@@ -11,7 +11,11 @@ static form — `progress-indicator` is pinned directly beneath it. Don't confus
 ## Anatomy
 1. **Status bar** — OS-owned, safe-area inset; not drawn by this component.
 2. **Header bar** — colored container beneath the status bar.
-3. **Title** — the current screen/flow name.
+3. **Title** — **"Service and Product Check"** (**confirmed via 2026-10 screenshot pass**,
+   renamed from the previous header title). This is chrome copy, not a conversational turn —
+   it persists above the thread regardless of which turn is showing. Note this is the header
+   *title only*; the project, its files, and the Figma node paths still use the GigaCheck
+   name, and renaming those would be a separate decision.
 4. **Close icon** — exits the flow.
 
 ## Variants
